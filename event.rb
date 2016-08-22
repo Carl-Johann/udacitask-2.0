@@ -1,5 +1,6 @@
+require_relative 'listable'
 class EventItem
-  # include Listable
+  include Listable
   attr_reader :description, :start_date, :end_date
 
   def initialize(description, options={})
@@ -8,18 +9,14 @@ class EventItem
     @end_date = Date.parse(options[:end_date]) if options[:end_date]
   end
 
-  def format_description
-    "#{@description}".ljust(25)
-  end
-
   def format_date
     dates = @start_date.strftime("%D") if @start_date
     dates << " -- " + @end_date.strftime("%D") if @end_date
     dates = "N/A" if !dates
     return dates
   end
-  
+
   def details
-    format_description + "event dates: " + format_date
+    format_description(@description) + "event dates: " + format_date
   end
 end
