@@ -1,28 +1,42 @@
+require_relative 'errors.rb'
 class UdaciList
+  include UdaciListErrors
   attr_reader :title, :items
 
   def initialize(options={})
     @title = options[:title]
-    @items = []
+    @items = []  
   end
-  
+
   def add(type, description, options={})
     type = type.downcase
-    @items.push TodoItem.new(description, options) if type == "todo"
-    @items.push EventItem.new(description, options) if type == "event"
-    @items.push LinkItem.new(description, options) if type == "link"
+    if ["todo", "event", "link"].include?(type)
+      @items.push TodoItem.new(description, options) if type == "todo"
+      @items.push EventItem.new(description, options) if type == "event"
+      @items.push LinkItem.new(description, options) if type == "link"
+    else 
+      raise InvalidItemType
+    end
   end
 
   def delete(index)
-    @items.delete_at(index - 1)
+    if index <= @items.length
+      @items.delete_at(index - 1)
+    else 
+      raise IndexExceedsListSize,  "'Deletion Index Exceeds List Length'"
+    end
   end
 
   def all
+    if @title == nil
+      @title = "Untitled List"
+    end
     puts "-" * @title.length
     puts @title
     puts "-" * @title.length
     @items.each_with_index do |item, position|
       puts "#{position + 1}) #{item.details}"
     end
+    puts
   end
 end
