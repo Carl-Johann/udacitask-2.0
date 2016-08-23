@@ -5,8 +5,7 @@ module Listable
   end
 
   def format_date(options={})
-  	
-  	if options.length == 1
+   	if options.length == 1
   		options[:due] ? options[:due].strftime("%D") : "No due date"
   	elsif options.length == 2
   		dates = options[:start_date].strftime("%D") if options[:start_date]
@@ -14,6 +13,14 @@ module Listable
     	dates = "N/A" if !dates
     	return dates
     end
+  end
+
+  def format_priority(priority)
+  	value = " ⇧" if priority == "high"
+    value = " ⇨" if priority == "medium"
+    value = " ⇩" if priority == "low"
+    value = "" if !priority
+    return value
   end
 end
 
