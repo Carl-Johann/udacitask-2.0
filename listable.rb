@@ -1,4 +1,6 @@
+require_relative 'errors'
 module Listable
+  include UdaciListErrors
   
   def format_description(description)
     "#{description}".ljust(30)
@@ -16,12 +18,16 @@ module Listable
   end
 
   def format_priority(priority)
-  	value = " ⇧" if priority == "high"
-    value = " ⇨" if priority == "medium"
-    value = " ⇩" if priority == "low"
-    value = "" if !priority
-    return value
-  end
+  	if ["high", "medium", "low", nil].include?(priority)
+  		value = " ⇧" if priority == "high"
+   		value = " ⇨" if priority == "medium"
+   		value = " ⇩" if priority == "low"
+   		value = "" if !priority
+   		return value
+   	else 
+   		raise InvalidPriorityValue, "'#{priority}' is not a valid priority value'"
+   	end
+   end
 end
 
 
