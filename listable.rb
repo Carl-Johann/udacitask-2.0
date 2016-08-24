@@ -32,10 +32,6 @@ module Listable
    		raise UdaciListErrors::InvalidPriorityValue, "'#{priority}' is not a valid priority value'"
    	end
   end
-
-  def clear_list(list)
-  	list.clear
-  end
 end
 
 
