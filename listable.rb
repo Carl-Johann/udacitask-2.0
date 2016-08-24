@@ -2,8 +2,12 @@ require_relative 'errors'
 module Listable
   include UdaciListErrors
   
-  def format_description(description)
-    "#{description}".ljust(30)
+  def format_description(description, type)
+    if type == "Event"
+    	return "#{description}".ljust(29)
+    else 
+    	return "#{description}".ljust(30)
+    end
   end
 
   def format_date(options={})
@@ -19,15 +23,19 @@ module Listable
 
   def format_priority(priority)
   	if ["high", "medium", "low", nil].include?(priority)
-  		value = " ⇧" if priority == "high"
-   		value = " ⇨" if priority == "medium"
-   		value = " ⇩" if priority == "low"
+  		value = " ⇧".colorize(:red) if priority == "high"
+   		value = " ⇨".colorize(:yellow) if priority == "medium"
+   		value = " ⇩".colorize(:green) if priority == "low"
    		value = "" if !priority
    		return value
    	else 
-   		raise InvalidPriorityValue, "'#{priority}' is not a valid priority value'"
+   		raise UdaciListErrors::InvalidPriorityValue, "'#{priority}' is not a valid priority value'"
    	end
-   end
+  end
+
+  def clear_list(list)
+  	list.clear
+  end
 end
 
 
