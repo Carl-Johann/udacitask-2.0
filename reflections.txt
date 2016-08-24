@@ -1,0 +1,24 @@
+# What you added to Udacitask 2.0
+# -------------------------------------------------------
+1. What is the gem of your choice and how did you use it?
+  a) I added the gem 'require_all'. It's purpose is to require all files in the designated directory.
+
+2. Describe the 2 features you added to the project.
+  a) Feature 1. 
+  	My first feature is the change_priority. It's purpose is to change the 'priority' of the designated index. I spent the better portion of an hour trying to call the method from my 'listable.rb', so that i wouldn't have to repeat the same code in 'event.rb', 'todo.rb' and 'link.rb', but no matter what i tried i could't get it to work. 
+  	I would really appreciate it, if you perhaps could tell me how i could be done...
+  
+  b) Feature 2.
+  	My second feature is the 'clear_list' feature, which clears the list being called from.
+  	So if i write: list.clear_list, it removes all items from 'list'   
+
+# REFLECTIONS
+# -------------------------------------------------------
+1. How long did you spend working on this project?
+	I worked my ass off for two days, so about 7 hours?
+2. What was the most rewarding challenge you conquered?
+	It was actually the one i spent the shortest amount of time on: format_date. Everything worked first try :)
+3. What two additional features did you build? Why?
+	I built the 'change_priority' because I thought it would be a usefull one to have(and easy to make. Which it wasn't...) 
+4. Where do you still have room to grow?
+	Everywhere ofcourse ;).
